@@ -7,7 +7,7 @@
     <li class="page-item" *ngFor="let p of pages" [ngClass]="{active:currentPage === p}">
       <a class="page-link" (click)="setPage(p)">{{p}}</a>
     </li>
-    <li class="page-item" [ngClass]="{disabled:currentPage === totalPages}">
+    <li class="page-item" [ngClass]="{disabled:currentPage === getTotalPages(items.length, pageSize)}">
       <a class="page-link" (click)="setPage(currentPage + 1)">Next</a>
    </li>
   </ul>
