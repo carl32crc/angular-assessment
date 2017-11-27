@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { GnomeService } from '../services/gnome.service';
 import { Gnome } from '../../models/gnome.interface';
 
@@ -11,8 +11,9 @@ import { Gnome } from '../../models/gnome.interface';
 export class ListComponent implements OnInit {
 
   private gnomes: Array<Gnome>;
+  private itemsPaginated: Array<Gnome>;
 
-  constructor(private gs: GnomeService) { }
+  constructor(private gs: GnomeService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getGnomes();
@@ -23,13 +24,17 @@ export class ListComponent implements OnInit {
       response => {
         if (response.Brastlewark) {
           this.gnomes = response.Brastlewark;
-          console.log(this.gnomes);
         }
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  getItemsPaginated(items) {
+    this.itemsPaginated = items;
+    this.cdr.detectChanges();
   }
 
 }

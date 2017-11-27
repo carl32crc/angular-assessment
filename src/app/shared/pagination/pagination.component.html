@@ -1,0 +1,14 @@
+
+<nav aria-label="...">
+  <ul *ngIf="pages && pages.length" class="pagination">
+    <li class="page-item" [ngClass]="{disabled:currentPage === 1}">
+      <a class="page-link" (click)="setPage(currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let p of pages" [ngClass]="{active:currentPage === p}">
+      <a class="page-link" (click)="setPage(p)">{{p}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:currentPage === totalPages}">
+      <a class="page-link" (click)="setPage(currentPage + 1)">Next</a>
+   </li>
+  </ul>
+</nav>

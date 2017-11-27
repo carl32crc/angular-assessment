@@ -1,3 +1,9 @@
-<p>
-  list works!
-</p>
+
+<div *ngFor="let item of itemsPaginated">{{item.name}}</div>
+
+
+<gnome-pagination *ngIf="gnomes" 
+                  [pageSize]="30" 
+                  [items]="gnomes"
+                  (action)="getItemsPaginated($event)">
+</gnome-pagination>
