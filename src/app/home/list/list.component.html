@@ -1,9 +1,20 @@
 
-<div *ngFor="let item of itemsPaginated">{{item.name}}</div>
+<gnome-search-bar textPlaceholder="Search by name..."
+                  textButton="Go!"
+                  (onSearch)="onSearch($event)">
+</gnome-search-bar>
 
+<div *ngIf="gnomesFiltered && gnomesFiltered.length > 0; then content else spinner"></div>
 
-<gnome-pagination *ngIf="gnomes" 
-                  [pageSize]="30" 
-                  [items]="gnomes"
-                  (action)="getItemsPaginated($event)">
-</gnome-pagination>
+<ng-template #spinner>
+    <gnome-spinner></gnome-spinner>
+</ng-template>
+
+<ng-template #content>
+    <div *ngFor="let item of itemsPaginated">{{item.name}}</div>
+
+    <gnome-pagination [pageSize]="30" 
+                      [items]="gnomesFiltered"
+                      (action)="getItemsPaginated($event)">
+    </gnome-pagination>
+</ng-template>

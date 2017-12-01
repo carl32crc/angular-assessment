@@ -12,4 +12,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
+  search() {
+    // this.ms.sendMessage('hola');
+  }
 }

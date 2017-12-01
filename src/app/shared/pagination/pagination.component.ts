@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'gnome-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
 
   @Input() pageSize;
   @Input() items;
@@ -24,6 +24,11 @@ export class PaginationComponent implements OnInit {
    this.setPage(1);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.items = changes.items.currentValue;
+    this.setPage(1);
+  }
+
   setPage(page: number) {
 
     if (page < 1 || page > this.getTotalPages(this.items.length, this.pageSize)) {
@@ -36,19 +41,24 @@ export class PaginationComponent implements OnInit {
   }
 
   getTotalPages(totalItems: number, pageSize: number) {
-    return Math.round(totalItems / pageSize);
+    return Math.ceil(totalItems / pageSize);
   }
 
   indexPage(currentPage: number = 1) {
-    if (currentPage <= 6) {
+    if (this.getTotalPages(this.items.length, this.pageSize) <= 10) {
       this.startPage = 1;
-      this.endPage = 10;
-    } else if (currentPage + 4 >= this.getTotalPages(this.items.length, this.pageSize)) {
-      this.startPage = this.getTotalPages(this.items.length, this.pageSize) - 9;
       this.endPage = this.getTotalPages(this.items.length, this.pageSize);
     } else {
-      this.startPage = currentPage - 5;
-      this.endPage = currentPage + 4;
+      if (currentPage <= 6) {
+        this.startPage = 1;
+        this.endPage = 10;
+      } else if (currentPage + 4 >= this.getTotalPages(this.items.length, this.pageSize)) {
+        this.startPage = this.getTotalPages(this.items.length, this.pageSize) - 9;
+        this.endPage = this.getTotalPages(this.items.length, this.pageSize);
+      } else {
+        this.startPage = currentPage - 5;
+        this.endPage = currentPage + 4;
+      }
     }
     this.rangeStartToEnd(currentPage);
   }

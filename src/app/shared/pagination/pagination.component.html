@@ -2,6 +2,9 @@
 <nav aria-label="...">
   <ul *ngIf="pages && pages.length" class="pagination">
     <li class="page-item" [ngClass]="{disabled:currentPage === 1}">
+      <a class="page-link" (click)="setPage(1)">First Page</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:currentPage === 1}">
       <a class="page-link" (click)="setPage(currentPage - 1)">Previous</a>
     </li>
     <li class="page-item" *ngFor="let p of pages" [ngClass]="{active:currentPage === p}">
@@ -9,6 +12,9 @@
     </li>
     <li class="page-item" [ngClass]="{disabled:currentPage === getTotalPages(items.length, pageSize)}">
       <a class="page-link" (click)="setPage(currentPage + 1)">Next</a>
-   </li>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:currentPage === getTotalPages(items.length, pageSize)}">
+      <a class="page-link" (click)="setPage(getTotalPages(items.length, pageSize))">End Page</a>
+    </li>
   </ul>
 </nav>

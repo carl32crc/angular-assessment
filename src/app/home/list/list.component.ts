@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { GnomeService } from '../services/gnome.service';
 import { Gnome } from '../../models/gnome.interface';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'gnome-list',
@@ -12,8 +14,10 @@ export class ListComponent implements OnInit {
 
   private gnomes: Array<Gnome>;
   private itemsPaginated: Array<Gnome>;
+  private gnomesFiltered: Array<Gnome>;
 
-  constructor(private gs: GnomeService, private cdr: ChangeDetectorRef) { }
+  constructor(private gs: GnomeService, private cdr: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     this.getGnomes();
@@ -24,6 +28,7 @@ export class ListComponent implements OnInit {
       response => {
         if (response.Brastlewark) {
           this.gnomes = response.Brastlewark;
+          this.gnomesFiltered = response.Brastlewark;
         }
       },
       error => {
@@ -37,4 +42,8 @@ export class ListComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+
+  onSearch(term) {
+    this.gnomesFiltered = this.gnomes.filter( gnome => gnome.name.toLowerCase().includes(term.toLowerCase()));
+  }
 }
