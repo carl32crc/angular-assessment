@@ -39,7 +39,6 @@ export class ListComponent implements OnInit {
 
   getItemsPaginated(items) {
     this.itemsPaginated = items;
-    console.log(this.itemsPaginated)
     this.cdr.detectChanges();
   }
 

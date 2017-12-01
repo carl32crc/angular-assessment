@@ -15,16 +15,16 @@
           <a href="#" class="list-group-item list-group-item-action active">
               Professions 
           </a>
-          <a *ngIf="professions" class="list-group-item list-group-item-action">Not Have Professions</a>
+          <a *ngIf="professions.length === 0" class="list-group-item list-group-item-action">Not Have Professions</a>
           <a href="#" *ngFor="let pro of professions" 
             class="list-group-item list-group-item-action">{{ pro }}</a>
         </div>
 
         <div class="list-group">
           <a href="#" class="list-group-item list-group-item-action active">
-              Friends 
+              Friends
           </a>
-          <a *ngIf="friends" class="list-group-item list-group-item-action">Not Have Friends</a>
+          <a *ngIf="friends.length === 0" class="list-group-item list-group-item-action">Not Have Friends</a>
           <a href="#" *ngFor="let fri of friends" 
             class="list-group-item list-group-item-action">{{  fri }}</a>
         </div>
