@@ -4,17 +4,47 @@
                   (onSearch)="onSearch($event)">
 </gnome-search-bar>
 
-<div *ngIf="gnomesFiltered && gnomesFiltered.length > 0; then content else spinner"></div>
-
-<ng-template #spinner>
+<ng-template [ngIf]="!gnomesFiltered">
     <gnome-spinner></gnome-spinner>
 </ng-template>
 
-<ng-template #content>
-    <div *ngFor="let item of itemsPaginated">{{item.name}}</div>
+<ng-template [ngIf]="gnomesFiltered && gnomesFiltered.length > 0">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of itemsPaginated">
+            <gnome-square [name]="item.name"
+                          [dataTarget]="'gnome' + item.id"
+                          [image]="item.thumbnail">
+            </gnome-square>
+
+            <gnome-modal [title]="item.name"
+                         [dataTarget]="'gnome' + item.id"
+                         [friends]="item.friends"
+                         [professions]="item.professions">
+
+                <gnome-properties property="Age"
+                                  [item]="item.age"></gnome-properties>
+                <gnome-properties property="Height"
+                                  [item]="item.height"></gnome-properties>
+                <gnome-properties property="Hair"
+                                  [item]="item.hair_color"></gnome-properties>
+                <gnome-properties property="Weight"
+                                  [item]="item.weight"></gnome-properties>
+                
+            </gnome-modal>
+        </div>
+    </div>
 
     <gnome-pagination [pageSize]="30" 
                       [items]="gnomesFiltered"
                       (action)="getItemsPaginated($event)">
     </gnome-pagination>
+</ng-template>
+
+<ng-template [ngIf]="gnomesFiltered && gnomesFiltered.length === 0">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Bad luck!</strong> This gnome is working...
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </ng-template>

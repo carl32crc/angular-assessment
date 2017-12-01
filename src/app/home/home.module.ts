@@ -8,6 +8,7 @@ import { HomeComponent } from './home.component';
 import { APP_ROUTING } from './home.routes';
 import { ListComponent } from './list/list.component';
 import { SquareComponent } from './square/square.component';
+import { PropertiesComponent } from './list/properties/properties.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { SquareComponent } from './square/square.component';
   declarations: [
     HomeComponent,
     ListComponent,
-    SquareComponent
+    SquareComponent,
+    PropertiesComponent
   ]
 })
 export class HomeModule { }

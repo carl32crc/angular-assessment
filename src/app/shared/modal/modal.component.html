@@ -1,3 +1,34 @@
-<p>
-  modal works!
-</p>
+<div class="modal fade" [id]="dataTarget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+              Professions 
+          </a>
+          <a *ngIf="professions" class="list-group-item list-group-item-action">Not Have Professions</a>
+          <a href="#" *ngFor="let pro of professions" 
+            class="list-group-item list-group-item-action">{{ pro }}</a>
+        </div>
+
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">
+              Friends 
+          </a>
+          <a *ngIf="friends" class="list-group-item list-group-item-action">Not Have Friends</a>
+          <a href="#" *ngFor="let fri of friends" 
+            class="list-group-item list-group-item-action">{{  fri }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

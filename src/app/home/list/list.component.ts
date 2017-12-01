@@ -39,11 +39,11 @@ export class ListComponent implements OnInit {
 
   getItemsPaginated(items) {
     this.itemsPaginated = items;
+    console.log(this.itemsPaginated)
     this.cdr.detectChanges();
   }
 
-
   onSearch(term) {
-    this.gnomesFiltered = this.gnomes.filter( gnome => gnome.name.toLowerCase().includes(term.toLowerCase()));
+    this.gnomesFiltered = this.gnomes.filter(gnome => gnome.name.toLowerCase().includes(term.toLowerCase()));
   }
 }
