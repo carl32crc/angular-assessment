@@ -1,3 +1,4 @@
+import { GnomeService } from './services/gnome.service';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

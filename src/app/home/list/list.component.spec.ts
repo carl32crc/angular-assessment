@@ -1,6 +1,8 @@
+import { SharedModule } from './../../shared/shared.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ListComponent } from './list.component';
+import { SquareComponent } from '../square/square.component';
+import { PropertiesComponent } from './properties/properties.component';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,7 +10,8 @@ describe('ListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ ListComponent , SquareComponent, PropertiesComponent],
+      imports: [SharedModule]
     })
     .compileComponents();
   }));
