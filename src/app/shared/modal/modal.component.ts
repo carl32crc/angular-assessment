@@ -10,8 +10,6 @@ export class ModalComponent implements OnInit {
   @Input() title;
   @Input() message;
   @Input() dataTarget;
-  @Input() professions;
-  @Input() friends;
 
   constructor() { }
 

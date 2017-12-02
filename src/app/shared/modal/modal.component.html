@@ -8,26 +8,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <ng-content></ng-content>
+        <ng-content select="modal-body"></ng-content>
       </div>
       <div class="modal-footer">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action active">
-              Professions 
-          </a>
-          <a *ngIf="professions.length === 0" class="list-group-item list-group-item-action">Not Have Professions</a>
-          <a href="#" *ngFor="let pro of professions" 
-            class="list-group-item list-group-item-action">{{ pro }}</a>
-        </div>
-
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action active">
-              Friends
-          </a>
-          <a *ngIf="friends.length === 0" class="list-group-item list-group-item-action">Not Have Friends</a>
-          <a href="#" *ngFor="let fri of friends" 
-            class="list-group-item list-group-item-action">{{  fri }}</a>
-        </div>
+        <ng-content select="modal-footer"></ng-content>
       </div>
     </div>
   </div>

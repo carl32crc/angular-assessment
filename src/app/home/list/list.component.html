@@ -21,14 +21,43 @@
                          [friends]="item.friends"
                          [professions]="item.professions">
 
-                <gnome-properties property="Age"
-                                  [item]="item.age"></gnome-properties>
-                <gnome-properties property="Height"
-                                  [item]="item.height"></gnome-properties>
-                <gnome-properties property="Hair"
-                                  [item]="item.hair_color"></gnome-properties>
-                <gnome-properties property="Weight"
-                                  [item]="item.weight"></gnome-properties>
+                <modal-body>
+                    <gnome-properties property="Age"
+                                      [item]="item.age">
+                    </gnome-properties>
+
+                    <gnome-properties property="Height"
+                                    [item]="item.height">
+                    </gnome-properties>
+
+                    <gnome-properties property="Hair"
+                                    [item]="item.hair_color">
+                    </gnome-properties>
+
+                    <gnome-properties property="Weight"
+                                    [item]="item.weight">
+                    </gnome-properties>
+                </modal-body>
+
+                <modal-footer>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            Professions 
+                        </a>
+                        <a *ngIf="item.friends.length === 0" class="list-group-item list-group-item-action">Not Have Professions</a>
+                        <a href="#" *ngFor="let profession of item.professions" 
+                            class="list-group-item list-group-item-action">{{ profession }}</a>
+                    </div>
+                
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            Friends
+                        </a>
+                        <a *ngIf="item.friends.length === 0" class="list-group-item list-group-item-action">Not Have Friends</a>
+                        <a href="#" *ngFor="let friend of item.friends" 
+                            class="list-group-item list-group-item-action">{{  friend }}</a>
+                    </div>
+                </modal-footer>
                 
             </gnome-modal>
         </div>

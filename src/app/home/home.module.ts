@@ -1,6 +1,6 @@
 import { GnomeService } from './services/gnome.service';
 import { CoreModule } from './../core/core.module';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from './../shared/shared.module';
@@ -22,6 +22,7 @@ import { PropertiesComponent } from './list/properties/properties.component';
     ListComponent,
     SquareComponent,
     PropertiesComponent
-  ]
+  ],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class HomeModule { }
