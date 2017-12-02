@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-
 import { api } from './../../constants/api.constants';
 
 @Injectable()
